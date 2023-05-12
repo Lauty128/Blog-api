@@ -2,29 +2,34 @@
     import express from 'express';
     import morgan from "morgan";
     import cors from 'cors'
-    
-    //------ Database
-    import { sequelize } from './src/config/sequelize.js';
+    import expressEjsLayouts from 'express-ejs-layouts';
+    import path from 'path';
+    import * as url from 'url';
     
     //------ Config
     const app = express()
+    const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
     const PORT = process.env.PORT || 4000
+
+    //------ Template Engine
+    app.set('view engine', 'ejs');
+    app.set('views', './src/views')
     
     //------ Middlewares
     app.use(cors({ origin:true }))
     app.use(morgan('dev'));
     app.use(express.json())
     app.use(express.urlencoded({ extended: false }))
+    app.use(expressEjsLayouts)  // Layouts for ejs
+    app.use(express.static(path.join(__dirname, 'src/public'))) // Public folder config
     
     
 //------ Routes
-    import router_articles from './src/routes/articles.routes.js';
-    import router_writers from './src/routes/writers.routes.js';
-    import router_books from './src/routes/books.routes.js';
+    import { api_router } from './src/routes/api.routes.js'
+    import { pages_router } from './src/routes/pages.routes.js'
     
-    app.use("/api/articles" , router_articles)
-    app.use("/api/writers" , router_writers)
-    app.use("/api/books" , router_books)
+    app.use('/api', api_router)
+    app.use('/', pages_router)
 
 //------ Listen
 
