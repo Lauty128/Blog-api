@@ -11,20 +11,7 @@
     const router = Router()
 
 //------------------------ Middlewares
-    router.use((req,res,next) => {
-        const whitelist = [ process.env.DOMAIN,`${process.env.DOMAIN}articulos`,'https://lautarosilverii.blog/']
-        if(whitelist.includes(req.headers.referer)){
-            return next()
-        }
-        
-        res.status(401).json({
-            status:401,
-            message:"No tienes los permisos necesarios"
-        })
-        
-        // create authentication middleware for PUT, DELETE and POST requests
-        // Use JWT for a secure authentication
-    })
+
 
 //-----------------------------------------------
 //------------------------ Routes ---------------
