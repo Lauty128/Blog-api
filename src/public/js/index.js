@@ -1,5 +1,5 @@
 import { getArticles, getBooks } from "./request.js";
-import { articlesList, booksList } from "./generators.js";
+import { articlesList, loadBooks, ArticlesHandler } from "./generators.js";
 
 //------------------ UPDATE PRIMARY DATA
 async function handlerLastArticles(){
@@ -19,6 +19,7 @@ async function handlerLastArticles(){
     localStorage.setItem('books_data', JSON.stringify(books))
 }
 
+// The function is executed when the page is load
 handlerLastArticles()
 
 //-----------------------------------------------------------
@@ -37,38 +38,35 @@ if(location.pathname === '/'){
     }
 
     //------- Books Load
-    const books = (localStorage.getItem('books_data'))
-        ? JSON.parse(localStorage.getItem('books_data'))
-        : await getBooks()
-
-    if(books.status == 200){
-        document.querySelector(".LastBooks").remove()
-        document.querySelector('.MainSection')
-            .insertAdjacentElement('beforeend', booksList(books.data))
-    }
+    loadBooks('.MainSection')
 }
 
 //-----------------------------------------------------------
 //------------------------- ARTICLES PAGE -----------------------
 //-----------------------------------------------------------
 if(location.pathname === '/articulos'){
-    //------- Articles Load
-    const articles = await getArticles()
-
-    if(articles.status == 200){
-        document.querySelector(".ArticlesPage__articlesContainer").remove()
-        const mainContainer = document.querySelector(".ArticlesPage__main")
-        mainContainer.insertAdjacentElement('afterbegin', articlesList(articles.data))
-    }
-
     //------- Books Load
-    const books = (localStorage.getItem('books_data'))
-        ? JSON.parse(localStorage.getItem('books_data'))
-        : await getBooks()
+    loadBooks('.ArticlesPage__main')
+    // Search if there is a parameter in the url
+    const pageParameter = new URLSearchParams(location.search).get('page')
+    const page = (pageParameter && pageParameter >= 1)
+                    ? pageParameter - 1
+                    : 0
 
-    if(books.status == 200){
-        document.querySelector(".LastBooks").remove()
-        document.querySelector('.ArticlesPage__main')
-            .insertAdjacentElement('beforeend', booksList(books.data))
-    }
+    // Create instance of the class and call to the function "create"
+    const articlesHandler = new ArticlesHandler({page})
+    articlesHandler.create()
+    
+    document.querySelector('.ArticlesPage__main').addEventListener('click', e=>{
+        const { target } = e
+
+        switch (target.getAttribute('id')) {
+            case 'nextPageButton':
+                articlesHandler.nextPage()
+            break;
+            case 'prevPageButton':
+                articlesHandler.prevPage()
+            break;
+        }
+    })
 }
