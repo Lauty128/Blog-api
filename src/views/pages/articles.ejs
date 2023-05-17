@@ -1,0 +1,22 @@
+<main class="ArticlesPage__main" style="margin-top: 8em;">
+    <div class="ArticlesPage__articlesContainer">
+        <h2 class="ArticlesPage__h2">ARTICULOS</h2>
+        <% [0,1,2,3].forEach(element => { %> 
+            <div class="Skeleton__articleCard">
+                <div class="Skeleton__articleCard--image Skeleton__articleCard--div"></div>
+                <div class="Skeleton__articleCard--date Skeleton__articleCard--div"></div>
+                <div class="Skeleton__articleCard--title Skeleton__articleCard--div"></div>
+            </div>
+        <% }) %> 
+        <Pagination />
+    </div>
+    <article class="LastBooks">
+        <h2 class="MainSection__h2 LastBooks__h2">ULTIMOS LIBROS LEIDOS</h2>
+        <% [0,1,2,3].forEach(element => { %> 
+            <div class="Skeleton__bookCard">
+                <div class="Skeleton__bookCard--image Skeleton__bookCard--div"></div>
+                <div class="Skeleton__bookCard--title Skeleton__bookCard--div"></div>
+            </div>
+        <% }) %> 
+    </article>
+</main>

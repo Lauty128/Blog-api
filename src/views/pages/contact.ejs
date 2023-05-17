@@ -1,0 +1,32 @@
+<div class="HeaderContact">
+    <h1 class="HeaderContact__h1">CONTACTAME</h1>
+    <p class="HeaderContact__p">Puedes enviarme un mensaje completando este formulario. El mismo me llegará a mi casilla de correo, donde podre verlo y así ponerme en contacto con usted</p>
+</div>
+
+<main class="Main Main--contact">
+    <form class="Form">
+
+        <div class="Form__inputContainer">
+            <label htmlFor="nameInput" class="Form__label Form__label--error">Nombre</label>
+            <input type="text" name='name' id='nameInput' class="Form__input" />
+        </div>
+        
+        <div class="Form__inputContainer">
+            <label htmlFor="emailInput" class="Form__label">Email</label>
+            <input type="text" name='email' id='emailInput' class="Form__input"/>
+        </div>
+        
+        <div class="Form__inputContainer">
+            <label htmlFor="linkedinInput" class="Form__label">Linkedin (opcional)</label>
+            <input type="text" name='linkedin' id='linkedinInput' class="Form__input" />
+        </div>
+
+        <div class="Form__inputContainer">
+            <label htmlFor="messageInput" class="Form__label">Mensaje</label>
+            <textarea name="message" id="messageInput" class="Form__input Form__textArea" rows="10"></textarea>
+        </div>
+
+        <input type="submit" value="ENVIAR" class="Form__submit" id="submitContactForm"/>
+
+    </form>
+</main>
