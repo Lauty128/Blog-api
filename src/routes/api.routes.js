@@ -12,7 +12,7 @@
 
 //------------------------ Middlewares
     router.use((req,res,next) => {
-        const whitelist = [ process.env.DOMAIN,'https://lautarosilverii.blog/']
+        const whitelist = [ process.env.DOMAIN,`${process.env.DOMAIN}articulos`,'https://lautarosilverii.blog/']
         if(whitelist.includes(req.headers.referer)){
             return next()
         }
