@@ -20,7 +20,7 @@ router.get('/articulos', (req,res)=>{
     res.render('pages/articles', { title_head: "Blog | Articulos" })
 })
 
-router.get('/contacto', (ree,res)=>{
+router.get('/contacto', (req,res)=>{
     res.render('pages/contact', { title_head: "Blog | Contactame" })
 })
 

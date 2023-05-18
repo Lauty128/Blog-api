@@ -8,3 +8,20 @@ export function parseTitle(title){
     })
     return newTitle
 }
+
+export function newMessage({ message, type=true }){
+    const cardType = type ? 'MessageCard--ok' : 'MessageCard--error';
+
+    document.querySelector(".MessageCard").classList.add(cardType)
+    document.querySelector(".MessageCard").classList.add("MessageCard--active")
+    document.querySelector(".MessageCard__message").textContent = message
+
+    setTimeout(()=>{
+        document.querySelector(".MessageCard").classList.remove("MessageCard--active")
+    }, 2500)
+    
+    setTimeout(()=>{
+        document.querySelector(".MessageCard").classList.remove("MessageCard--ok")
+        document.querySelector(".MessageCard").classList.remove("MessageCard--error")
+    }, 2900)
+}

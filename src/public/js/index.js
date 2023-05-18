@@ -1,5 +1,6 @@
 import { getArticles, getBooks } from "./request.js";
 import { articlesList, loadBooks, ArticlesHandler } from "./generators.js";
+import { newMessage } from "./utils.js";
 
 //------------------ UPDATE PRIMARY DATA
 async function handlerLastArticles(){
@@ -81,7 +82,7 @@ if(location.pathname === '/contacto'){
         "email": /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
         "linkedin": /^(https?:\/\/)?([a-z]+\.)?linkedin\.com\/in\/[a-z0-9_-]+\/?$/i,
         //"message": /^.[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ-_,.\s\n]{50,}$/
-        "message": /^.[\w.,-_áéíóúÁÉÍÓÚüÜñÑ\s\n]{50,500}$/
+        "message": /^.[\w.,-_()áéíóúÁÉÍÓÚüÜñÑ\s\n]{50,500}$/
     }
 
     //---- Functions
@@ -116,7 +117,7 @@ if(location.pathname === '/contacto'){
     })
 
     //----------- Handler the submit form
-    document.querySelector('.Form').addEventListener('submit', e=>{
+    document.querySelector('.Form').addEventListener('submit', async e=>{
         e.preventDefault()
         const form = new FormData(e.target)
         const values = {
@@ -127,9 +128,27 @@ if(location.pathname === '/contacto'){
         }
 
         if(validation_of_form(values)){
-            console.log('Eviando formulario')
-        }
+            //------ Style to simulate submit of the form
+            document.querySelector(".Form__submit").classList.add("Form__submit--uploading")
 
-        
+            //------ Define values and send it
+            const data = {
+                service_id: 'service_9uivd2t',
+                template_id: 'template_pedbl5e',
+                user_id: '7W6DBOmDsZB4m10Pk',
+                template_params: values
+            };
+            const submitData = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 'content-type': 'application/json' }
+            })
+
+            //------- Load of message
+            if(submitData.status == 200) newMessage({ message:"Mensaje enviado correctamente" })
+            else newMessage({ type:false, message:"Ocurrio un error mientras se enviaban los datos" })
+
+            document.querySelector(".Form__submit").classList.remove("Form__submit--uploading")
+        }
     })
 }

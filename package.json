@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@emailjs/browser": "3.10.0",
     "cloudinary": "1.33.0",
     "cors": "2.8.5",
     "dotenv": "16.0.3",
