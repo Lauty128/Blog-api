@@ -41,9 +41,9 @@ if(location.pathname === '/'){
     loadBooks('.MainSection')
 }
 
-//-----------------------------------------------------------
+//---------------------------------------------------------------
 //------------------------- ARTICLES PAGE -----------------------
-//-----------------------------------------------------------
+//---------------------------------------------------------------
 if(location.pathname === '/articulos'){
     //------- Books Load
     loadBooks('.ArticlesPage__main')
@@ -68,5 +68,68 @@ if(location.pathname === '/articulos'){
                 articlesHandler.prevPage()
             break;
         }
+    })
+}
+
+//----------------------------------------------------------------
+//------------------------- CONTACTME PAGE -----------------------
+//----------------------------------------------------------------
+if(location.pathname === '/contacto'){
+    // Regular expressions
+    const expressions = {
+        "name": /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{8,50}$/,
+        "email": /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        "linkedin": /^(https?:\/\/)?([a-z]+\.)?linkedin\.com\/in\/[a-z0-9_-]+\/?$/i,
+        //"message": /^.[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ-_,.\s\n]{50,}$/
+        "message": /^.[\w.,-_áéíóúÁÉÍÓÚüÜñÑ\s\n]{50,500}$/
+    }
+
+    //---- Functions
+    const regularExpressionValidate = (value, exp) => exp.test(value)
+
+    function validation_of_input(name, value){
+        if((name === 'linkedin' && value.length > 0) || (name !== 'linkedin')) return regularExpressionValidate(value, expressions[name])
+        return true
+    }
+
+    function validation_of_form(values){
+        let inputs = ['name','email','linkedin','message'];
+        let validates = [];
+    
+        inputs.forEach(name => validates.push(validation_of_input(name, values[name])) )
+    
+        return !validates.includes(false)
+        // if this << inputs.includes(false) >> is true then the form is invalid 
+        // Therefore the value is inverted
+    }
+
+    function inputHandler(target){
+        const { name,value } = target
+
+        if(!validation_of_input(name, value) && value.length > 0) target.classList.add('Form__input--error')
+        else{ target.classList.remove('Form__input--error') }
+    }
+
+    //----------- Handler the inputs, when its value is changed
+    document.querySelectorAll('.Form__input').forEach(input=>{
+        input.addEventListener('keyup', e=> inputHandler(e.target))
+    })
+
+    //----------- Handler the submit form
+    document.querySelector('.Form').addEventListener('submit', e=>{
+        e.preventDefault()
+        const form = new FormData(e.target)
+        const values = {
+            name: form.get('name'),
+            email: form.get('email'),
+            linkedin: form.get('linkedin'),
+            message: form.get('message')
+        }
+
+        if(validation_of_form(values)){
+            console.log('Eviando formulario')
+        }
+
+        
     })
 }
