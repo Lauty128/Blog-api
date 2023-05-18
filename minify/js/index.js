@@ -13,7 +13,7 @@ async function handlerLastArticles(){
     }
     
     // if it doesn't exist or 3 days have passed, then the data 
-    const articles = await getArticles()
+    const articles = await getArticles(0)
     const books = await getBooks()
     localStorage.setItem('time', Math.round(new Date().getTime()/1000))
     localStorage.setItem('articles_data', JSON.stringify(articles))
@@ -30,7 +30,7 @@ if(location.pathname === '/'){
     //------- Articles Load
     const articles = (localStorage.getItem('articles_data'))
         ? JSON.parse(localStorage.getItem('articles_data'))
-        : await getArticles()
+        : await getArticles(0)
 
     if(articles.status == 200){
         document.querySelector(".MainSection__articlesContainer").remove()

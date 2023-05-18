@@ -1,4 +1,4 @@
-import { getArticles } from './request.js'
+import { getArticles, getBooks } from './request.js'
 import { parseTitle } from './utils.js'
 
 //-------------------------- CARDS
@@ -145,7 +145,7 @@ export class ArticlesHandler{
     }
 
     async create(){
-        const data = await getArticles({ page: this.page, size: this.size })
+        const data = await getArticles(this.page, this.size)
         if(data.status == 200){
             this.total = data.total
             this.articles = data.data

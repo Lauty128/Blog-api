@@ -1,4 +1,4 @@
-export async function getArticles({page=0, size=4}){
+export async function getArticles(page, size=4){
 
     try{
         const url = `/api/articles?page=${page}&size=${size}`
