@@ -33,8 +33,8 @@ function articleCard(article){
     container.setAttribute('data-aos-duration', '1000')
     container.setAttribute('data-aos-duration', 'zoom')
     container.setAttribute('data-aos-once', 'true')
-    imageContainerA.setAttribute('href', `/articles/${url}`)
-    titleA.setAttribute('href', `/articles/${url}`)
+    imageContainerA.setAttribute('href', `/articulos/${url}`)
+    titleA.setAttribute('href', `/articulos/${url}`)
     image.setAttribute('title', article.title)
     title.setAttribute('title', article.title)
     
