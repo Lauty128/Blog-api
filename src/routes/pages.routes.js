@@ -2,27 +2,23 @@
 import { Router } from "express";
 
 //------------------------ Controllers
+import Controllers from "../controllers/pages.controllers.js";
 
 //------------------------ Config
 const router = Router()
 
 //------------------------ Routes
 
-router.get('/', (req,res)=>{
-    res.render('pages/home', { title_head: "Blog | Inicio" })
-})
+router.get('/', Controllers.homePage)
 
-router.get('/sobremi', (req,res)=>{
-    res.render('pages/aboutMe', { title_head: "Blog | Sobre mi" })
-})
+router.get('/sobremi', Controllers.aboutMePage)
 
-router.get('/articulos', (req,res)=>{
-    res.render('pages/articles', { title_head: "Blog | Articulos" })
-})
+router.get('/contacto', Controllers.contactPage)
 
-router.get('/contacto', (req,res)=>{
-    res.render('pages/contact', { title_head: "Blog | Contactame" })
-})
+router.get('/articulos', Controllers.articlesPage)
+
+router.get('/articulos/:title', Controllers.articlePage)
+
 
 
 export { router as pages_router }
