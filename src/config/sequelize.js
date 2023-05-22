@@ -6,6 +6,7 @@
 
     
 //---- Config of database
+if(db_environment === "dev") console.log('DEV ENVIRONMENT');
     export const sequelize = (db_environment === "dev") 
         ? new Sequelize(db_name, db_user, db_password,{
             host:db_host,

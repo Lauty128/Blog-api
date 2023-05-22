@@ -1,0 +1,42 @@
+<% if(article){ %>
+
+    <main class="ArticleSelected">
+        <% if(article.imageContribution !== ''){ %>
+            <span class="ArticleSelected__imageOwner">
+                Dueño de la imagen: <a href="<%= article.imageContribution.url %>">@<%= article.imageContribution.name %></a> 
+            </span>
+        <% } %>
+                
+        <img src="<%= article.image %>" alt="<%= article.alt %>" class="ArticleSelected__headerImage" />
+
+        <div class="ArticleSelected__infoContainer">
+            <span><%= article.createdAt %></span>
+            <a href="#"><span class="category"><%= article.category %></span></a>
+        </div>
+
+        <h2 class="ArticleSelected__h2"><%= article.title %></h2>
+
+        <div class="ArticleSelected__writer">
+            <img src="<%= article.writer.image %>" alt='escritor de articulo' class='ArticleSelected__writerImage' />
+            <span class="ArticleSelected__writerSpan"><%= article.writer.name %></span>
+        </div>
+
+        <div class="ArticleSelected__content">
+            <%- article.content %>
+        </div>
+    </main>
+
+<% } else{%>
+
+    <div class="Error">
+        <div class="Error__title">
+            <svg width="50px" height="50px" stroke-width="1.7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M11.576 1.424a.6.6 0 01.848 0l10.152 10.152a.6.6 0 010 .848L12.424 22.576a.6.6 0 01-.848 0L1.424 12.424a.6.6 0 010-.848L11.576 1.424zM12 8v4M12 16.01l.01-.011" stroke="#000000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <h3>ERROR</h3>
+        </div>
+        <p class="Error__p">Ocurrio un error durante la transaccion, o el arituculo no existe</p>
+        <button class="Error__button">
+            <a href="/articulos">VER ARTICULOS</a>
+        </button>
+    </div>
+
+<% } %>

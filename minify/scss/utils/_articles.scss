@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $principal-color;
+    background-color: #E7E0D2;
     margin-top: 12em;
     padding-bottom: 7em;
     position: relative;
@@ -30,7 +30,7 @@
         position: absolute;
         right: 28%;
         top: -8.5em;
-        color: $secundary-color-text;
+        color: rgb(102, 101, 101);
     }
 
     &__infoContainer{
@@ -52,13 +52,15 @@
     }
 
     &__writer{
-        @include flex(center, center);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         gap:.5em;
         margin-top: .3em;
         margin-bottom: 2em;
     }
 
-    &__writerImage{ border-radius: 50%; border: 1px solid #4d4d4d; }
+    &__writerImage{ border-radius: 50%; border: 1px solid #4d4d4d; width: 30px; }
 
     &__writerSpan{
         font-size: 1.5em;
@@ -66,7 +68,9 @@
     }
 
     &__content{
-        width: 60%;
+        max-width: 850px;
+        width: 100%;
+        padding: 0 3em;
 
         & a{ font-weight: 400; color: rgb(75, 75, 161); }
 
@@ -75,7 +79,7 @@
             line-height: 150%;
             text-align: justify;
             font-size: 1.2em;
-            color: $secundary-color-text;
+            color: rgb(102, 101, 101);
         }
 
         & ul{ margin-left: 40px; }
@@ -83,7 +87,7 @@
             list-style: disc;
             color: rgb(54, 54, 54);
             font-size: 1.1em;
-            font-family: $secundary-font;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             & > ul > li{ list-style: circle }
         }
         
@@ -92,10 +96,10 @@
 
             align-self: baseline; 
             margin: .2em 0 .2em 1em;
-            border-left: .3em solid $secundary-color; 
+            border-left: .3em solid #94B49F; 
             padding: .4em 0.3em;
 
-            & p { margin: 0; color: $secundary-color-text }
+            & p { margin: 0; color: rgb(102, 101, 101) }
         }
 
         & img{ width: 100%; }
@@ -104,7 +108,7 @@
             background-color:rgb(53, 53, 53);
             border-radius: .3em;
             padding: .3em;
-            color: $secundary-color;
+            color: #94B49F;
             color: #cacaca;
             vertical-align: middle;
         }
@@ -158,7 +162,7 @@
         &__h2--aboutMe{ font-size: 3em; }
         &__image--aboutMe{ margin-top: 1em; margin-left: 1em;  width: 10em; height: 16em }
         
-        &__content{ width: 80% }
+        &__content{ padding: 0 3em; }
     }
 
     .imagesContainer{
@@ -195,7 +199,7 @@
         &__createdBy{ font-size: 1.2em; }
 
         &__content{ 
-            width: 90%;
+            //width: 90%;
             & blockquote p{ font-size: 1em }
         }
     }

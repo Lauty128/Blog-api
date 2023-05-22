@@ -16,7 +16,7 @@
     app.set('views', './src/views')
     
     //------ Middlewares
-    app.use(cors({ origin:['https://lautarosilverii.tech'] }))
+    app.use(cors({ origin:['https://lautarosilverii.tech','http://localhost:5173'] }))
     app.use(morgan('dev'));
     app.use(express.json())
     app.use(express.urlencoded({ extended: false }))

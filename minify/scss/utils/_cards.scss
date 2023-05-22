@@ -77,3 +77,20 @@
     &--error{ background-color: rgba(110, 62, 62, 0.678) }
 
 }
+
+.Error{
+    @include flex(center,center,column);
+    margin: 8em 0;
+
+    &__title{
+        @include flex(center,center, row);
+        gap: 1em;
+
+        & > h3{ font-size: 3em; }
+    }
+    &__p{ color: $secundary-color-text }
+
+    &__button{
+        & > a{ color: $primary-color-text; line-height: 180%; padding: 1em; }
+    }
+}
