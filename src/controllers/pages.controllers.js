@@ -40,7 +40,7 @@ const articlePage = async(req,res)=>{
         const converter = new Showdown.Converter({ tables:true })
         const content = converter.makeHtml(data.data.content)
         const date = new Date(data.data.createdAt).toLocaleDateString('es-ES', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
-        const imageContribution = data.data.imageContribution !== '' 
+        const imageContribution = (data.data.imageContribution !== '' && data.data.imageContribution) 
             ? {
                 name: Utils.get_imageOwner(data.data.imageContribution),
                 url: data.data.imageContribution
@@ -53,7 +53,6 @@ const articlePage = async(req,res)=>{
             createdAt: date,
             imageContribution
         }
-        console.log(article.id);
         return res.render('pages/article', { title_head: title, article })
     }
     
