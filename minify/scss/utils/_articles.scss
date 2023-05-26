@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     background-color: #E7E0D2;
-    margin-top: 12em;
+    margin-top: 10em;
     padding-bottom: 7em;
     position: relative;
     max-width: 100%;
@@ -12,12 +12,11 @@
         display: flex;
         place-items: end center;
         gap: 1em;
-        margin-top: -7em;
+        margin-top: -5em;
         margin-bottom: 3em;
-
-        & img{ width: 13em; box-shadow: 0 0 5px rgba(0,0,0,0.7) }
     }
-    &__h2--aboutMe{ text-decoration: underline .07em; font-size: 4em; margin-bottom: .6em; }
+
+    &__h2--aboutMe{ text-decoration: underline .07em; font-size: 4em; margin-bottom: .5em; text-align: center; }
 
     &__headerImage{
         max-width: 100%;
@@ -25,6 +24,9 @@
         height: 22em;
         margin-top: -7em;
     }
+
+    &__imageContainer--aboutMe{ width: 15em; height: 18em; float: left; margin-right: .5em; margin-top:1em; }
+    &__image--aboutMe{ height: 100%; }
 
     &__imageOwner{
         position: absolute;
@@ -160,13 +162,9 @@
         &__headerImage{ width: 100%;  margin-top: 0 }
         &__header--aboutMe{ margin-top: -4em; }
         &__h2--aboutMe{ font-size: 3em; }
-        &__image--aboutMe{ margin-top: 1em; margin-left: 1em;  width: 10em; height: 16em }
+        // &__image--aboutMe{ margin-top: 1em; margin-left: 1em;  width: 10em; height: 16em }
         
         &__content{ padding: 0 3em; }
-    }
-
-    .imagesContainer{
-        &__img1, &__img2{ width: 15em; height: 10em } 
     }
      
 }
@@ -181,11 +179,6 @@
     }
     .ArticleSelected__h2--aboutMe{ font-size: 2.2em; }
 
-
-    .imagesContainer{
-        &__img1, &__img2{ width: 12em; height: 8em; } 
-        &__img2{ margin-top:2em }
-    }
 }
 
 @media screen and (max-width:420px){
