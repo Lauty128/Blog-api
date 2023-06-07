@@ -150,5 +150,6 @@ if(location.pathname === '/contacto'){
 
             document.querySelector(".Form__submit").classList.remove("Form__submit--uploading")
         }
+        else newMessage({ message:"Hay un campo incorrecto. Es necesario corregirlo para continuar", type: false })
     })
 }
