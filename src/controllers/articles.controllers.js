@@ -20,8 +20,9 @@ const allData =async(req,res)=>{
         offset: (+page) * (+size),
         limit: +size
     }
+    const where = (category !== null) ? { category_id:category } : { } 
     const writer = { include:{ model:Writer, attributes:['name','image'] } } 
-    const data = await Article_class.getAllData({...writer, ...pagination })
+    const data = await Article_class.getAllData({...writer, ...pagination, where })
     res.json(data)
 }
 
