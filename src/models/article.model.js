@@ -19,10 +19,25 @@ export const Article = sequelize.define('articles',{
         type:DataTypes.STRING,
         defaultValue: null
     },
-    category:DataTypes.STRING(40),
+    category_id:{
+        type: DataTypes.STRING(12),
+        defaultValue: createPassword(12)
+    },
     content:DataTypes.TEXT,
     views:{
         type: DataTypes.INTEGER,
         defaultValue:0
     }
 })
+
+export const Category = sequelize.define('category',{
+    id:{
+        type: DataTypes.STRING(12),
+        defaultValue: createPassword(12),
+        primaryKey: true
+    },
+    name: DataTypes.STRING(30)
+})
+
+Category.hasMany(Article)
+Article.belongsTo(Category)
