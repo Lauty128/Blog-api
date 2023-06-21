@@ -27,8 +27,12 @@ export const Article = sequelize.define('articles',{
     views:{
         type: DataTypes.INTEGER,
         defaultValue:0
-    }
-})
+    },
+    createdAt:{
+        type:DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+    } 
+}, { createdAt:false })
 
 export const Category = sequelize.define('category',{
     id:{
@@ -39,5 +43,5 @@ export const Category = sequelize.define('category',{
     name: DataTypes.STRING(30)
 })
 
-Category.hasMany(Article)
-Article.belongsTo(Category)
+Category.hasMany(Article, { foreignKey:'category_id' })
+Article.belongsTo(Category, { foreignKey:'category_id' })

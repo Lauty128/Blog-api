@@ -1,8 +1,5 @@
 //--------- Services
-import Article_class from "../services/articles.service.js";
-
-//----- Models
-import { Writer } from "../models/writer.model.js";
+import Services from "../services/articles.service.js";
 
 //--------- Utils
 import cloudinary from "../config/cloudinary.js";
@@ -21,8 +18,7 @@ const allData =async(req,res)=>{
         limit: +size
     }
     const where = (category !== null) ? { category_id:category } : { } 
-    const writer = { include:{ model:Writer, attributes:['name','image'] } } 
-    const data = await Article_class.getAllData({...writer, ...pagination, where })
+    const data = await Services.getAllData({...pagination, where })
     res.json(data)
 }
 
@@ -33,8 +29,7 @@ const oneData =async(req,res)=>{
     const param = req.params.id
     const where = regexId.test(param) ? { id:param } : { title:param.replace(regex_space, ' ') }
 
-    const filters = {include:{ model:Writer, attributes:['name','image'] }}
-    const data = await Article_class.getOneData(where, filters)
+    const data = await Services.getOneData(where)
     
     res.json(data)
 }
@@ -44,7 +39,7 @@ const submitData = async(req,res)=>{
         const image = await cloudinary.upload(req.file.path,"Blog")
 
         const body = req.body
-        const data = await Article_class.addData(body, image.secure_url)
+        const data = await Services.addData(body, image.secure_url)
         res.status(data.status).json(data)
     }
     catch(error){
@@ -60,12 +55,12 @@ const modifyData = async (req,res)=>{
     const { id } = req.params
     const body = req.body
 
-    const data = await Article_class.modifyData(id, body)
+    const data = await Services.modifyData(id, body)
     res.status(data.status).json(data)
 }
 
 const removeData = async(req,res)=>{
-    const data = await Article_class.removeData(req.params.id)
+    const data = await Services.removeData(req.params.id)
     res.status(data.status).json(data) 
 }
 
