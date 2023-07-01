@@ -36,7 +36,7 @@ const getAllData = async( filters={} )=>{
 
 const getOneData = async (where) =>{
     //------------ Include
-    const include = [ { model:Writer, attributes:['name','image'] },
+    const include = [ { model:Writer, attributes:['id','name','image'] },
                     { model:Category, attributes:['id','name'] } ]
 
     //------------ Service
