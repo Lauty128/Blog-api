@@ -10,7 +10,7 @@
     const PORT = process.env.PORT || 4000
     
 //------ Middlewares
-    app.use(cors({ origin:['https://lautarosilverii.tech', 'http://localhost:5173']}))
+    app.use(cors({ origin:['https://lautarosilverii.tech']}))
     app.use(compression())
     app.use(express.json())
     app.use(express.urlencoded({ extended: false }))
