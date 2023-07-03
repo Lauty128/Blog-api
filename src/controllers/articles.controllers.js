@@ -3,6 +3,7 @@ import Services from "../services/articles.service.js";
 
 //--------- Utils
 import cloudinary from "../config/cloudinary.js";
+import { createPassword } from "../utils/password.js";
 
 
 //--------- Controllers
@@ -35,11 +36,13 @@ const oneData =async(req,res)=>{
 }
 
 const submitData = async(req,res)=>{
+    console.log(req.body);
+    console.log(req.file);
     try{
         const image = await cloudinary.upload(req.file.path,"Blog")
 
         const body = req.body
-        const data = await Services.addData(body, image.secure_url)
+        const data = await Services.addData({ ...body, id:createPassword(24) }, image.secure_url)
         res.status(data.status).json(data)
     }
     catch(error){

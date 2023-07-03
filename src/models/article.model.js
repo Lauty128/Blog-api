@@ -20,8 +20,7 @@ export const Article = sequelize.define('articles',{
         defaultValue: null
     },
     category_id:{
-        type: DataTypes.STRING(12),
-        defaultValue: createPassword(12)
+        type: DataTypes.STRING(12)
     },
     content:DataTypes.TEXT,
     views:{
